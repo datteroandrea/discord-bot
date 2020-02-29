@@ -1,6 +1,6 @@
 # Discord-Bot
 
-A simple template for a telegram bot
+A discord music bot
 
 # How it works
 
