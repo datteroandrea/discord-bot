@@ -2,9 +2,10 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
     intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_VOICE_STATES]
 });
+
 const settings = {
     prefix: '!',
-    token: 'NTEzNDQ4NTM2NzQ3MDE2MjAy.W_B4Ng.cFLPQS_Z1_Ag000sN7LoprDbZ_k' // oscura il token
+    token: process.env.token
 };
 
 console.log("Started!");
