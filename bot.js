@@ -8,8 +8,6 @@ const settings = {
     token: process.env.token
 };
 
-console.log("Started!");
-
 const { Player, RepeatMode } = require("discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
@@ -18,7 +16,7 @@ const player = new Player(client, {
 client.player = player;
 
 client.on("ready", () => {
-    console.log("I am ready to Play with DMP 🎶");
+    console.log("I am ready to Play!");
 });
 
 client.on('messageCreate', async (message) => {
@@ -29,6 +27,7 @@ client.on('messageCreate', async (message) => {
     if(command === 'play') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
+        message.reply("Now playing: "+args.join(' '))
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
