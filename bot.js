@@ -90,7 +90,7 @@ client.on('messageCreate', async (message) => {
     }
 
     if(command === 'queue') {
-        console.log(guildQueue);
+        message.channel.send('🎵 **Now Playing**: '+guildQueue);
     }
 
     if(command === 'song') {
