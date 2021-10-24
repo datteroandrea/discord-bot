@@ -94,7 +94,7 @@ client.on('messageCreate', async (message) => {
     }
 
     if(command === 'song') {
-        console.log('🎵 **Now Playing**: ${guildQueue.nowPlaying}');
+        message.channel.send('🎵 **Now Playing**: '+guildQueue.nowPlaying);
     }
 
     if(command === 'pause') {
@@ -110,6 +110,7 @@ client.on('messageCreate', async (message) => {
     }
 
     if(command === 'join') {
+        message.member.voice.channel.join();
         
     }
 });
