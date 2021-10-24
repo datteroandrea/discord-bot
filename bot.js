@@ -19,6 +19,8 @@ client.on("ready", () => {
     console.log("I am ready to Play!");
 });
 
+var loop = RepeatMode.DISABLED; // RepeatMode.SONG to repeat the current song, 
+
 client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift();
@@ -27,7 +29,7 @@ client.on('messageCreate', async (message) => {
     if(command === 'play') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
-        message.reply("Now playing: "+args.join(' '))
+        message.reply("🎵**Now playing**: "+args.join(' '));
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
@@ -51,16 +53,30 @@ client.on('messageCreate', async (message) => {
         guildQueue.stop();
     }
 
-    if(command === 'removeLoop') {
-        guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
+    if(command === 'loop') {
+        var msg = "";
+        if(loop == RepeatMode.DISABLED) {
+            loop = RepeatMode.SONG;
+            msg = "🎵 **Toggled Loop**";
+        } else {
+            loop = RepeatMode.DISABLED;
+            msg = "🎵 **Disabled Loop**";
+        }
+        guildQueue.setRepeatMode(loop); // or 1 instead of RepeatMode.SONG
+        message.reply(msg);
     }
 
-    if(command === 'toggleLoop') {
-        guildQueue.setRepeatMode(RepeatMode.SONG); // or 1 instead of RepeatMode.SONG
-    }
-
-    if(command === 'toggleQueueLoop') {
-        guildQueue.setRepeatMode(RepeatMode.QUEUE); // or 2 instead of RepeatMode.QUEUE
+    if(command === 'loopQueue') {
+        var msg = "";
+        if(loop == RepeatMode.DISABLED) {
+            loop = RepeatMode.QUEUE;
+            msg = "🎵 **Toggled Queue Loop**";
+        } else {
+            loop = RepeatMode.DISABLED;
+            msg = "🎵 **Disabled Queue Loop**";
+        }
+        guildQueue.setRepeatMode(loop); // or 1 instead of RepeatMode.SONG
+        message.reply(msg);
     }
 
     if(command === 'setVolume') {
