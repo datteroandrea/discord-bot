@@ -10,7 +10,9 @@ const settings = {
 
 const { Player, RepeatMode } = require("discord-music-player");
 const player = new Player(client, {
-    leaveOnEmpty: false, // This options are optional.
+    leaveOnEmpty: true, // This options are optional.
+    leaveOnEnd: false,
+    deafenOnJoin: true
 });
 // You can define the Player as *client.player* to easly access it.
 client.player = player;
@@ -29,7 +31,7 @@ client.on('messageCreate', async (message) => {
     if(command === 'play') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
-        message.reply("🎵**Now playing**: "+args.join(' '));
+        message.reply("🎵 **Added to the queue**: "+args.join(' '));
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
@@ -66,7 +68,7 @@ client.on('messageCreate', async (message) => {
         message.reply(msg);
     }
 
-    if(command === 'loopQueue') {
+    if(command === 'loopQueue' || command === 'loopqueue' || command === 'loopq') {
         var msg = "";
         if(loop == RepeatMode.DISABLED) {
             loop = RepeatMode.QUEUE;
@@ -79,15 +81,7 @@ client.on('messageCreate', async (message) => {
         message.reply(msg);
     }
 
-    if(command === 'setVolume') {
-        guildQueue.setVolume(parseInt(args[0]));
-    }
-
-    if(command === 'seek') {
-        guildQueue.seek(parseInt(args[0]) * 1000);
-    }
-
-    if(command === 'clearQueue') {
+    if(command === 'clear') {
         guildQueue.clearQueue();
     }
 
@@ -95,16 +89,12 @@ client.on('messageCreate', async (message) => {
         guildQueue.shuffle();
     }
 
-    if(command === 'getQueue') {
+    if(command === 'queue') {
         console.log(guildQueue);
     }
 
-    if(command === 'getVolume') {
-        console.log(guildQueue.volume)
-    }
-
-    if(command === 'nowPlaying') {
-        console.log(`Now playing: ${guildQueue.nowPlaying}`);
+    if(command === 'song') {
+        console.log('🎵 **Now Playing**: ${guildQueue.nowPlaying}');
     }
 
     if(command === 'pause') {
@@ -119,11 +109,8 @@ client.on('messageCreate', async (message) => {
         guildQueue.remove(parseInt(args[0]));
     }
 
-    if(command === 'createProgressBar') {
-        const ProgressBar = guildQueue.createProgressBar();
+    if(command === 'join') {
         
-        // [======>              ][00:35/2:20]
-        console.log(ProgressBar.prettier);
     }
 });
 
