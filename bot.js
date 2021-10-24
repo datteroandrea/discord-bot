@@ -57,7 +57,7 @@ client.on('messageCreate', async (message) => {
 
     if(command === 'loop') {
         var msg = "";
-        if(loop == RepeatMode.DISABLED) {
+        if(loop != RepeatMode.SONG) {
             loop = RepeatMode.SONG;
             msg = "🎵 **Toggled Loop**";
         } else {
@@ -68,9 +68,9 @@ client.on('messageCreate', async (message) => {
         message.reply(msg);
     }
 
-    if(command === 'loopQueue' || command === 'loopqueue' || command === 'loopq') {
+    if(command === 'loopq') {
         var msg = "";
-        if(loop == RepeatMode.DISABLED) {
+        if(loop != RepeatMode.QUEUE) {
             loop = RepeatMode.QUEUE;
             msg = "🎵 **Toggled Queue Loop**";
         } else {
@@ -111,8 +111,35 @@ client.on('messageCreate', async (message) => {
 
     if(command === 'join') {
         let queue = client.player.createQueue(message.guild.id);
-        await queue.join(message.member.voice.channel);
+        if(message.member.voice.channel != null)
+            await queue.join(message.member.voice.channel);
+    }
+
+    if(command === 'help') {
+        message.reply(
+            `+clear\t\tclears the queue
+            +help\t\tshows the commands
+            +join\t\tjoins the channel of the user
+            +loop\t\tloops the current song
+            +loopq\t\tloops the queue
+            +pause\t\tpauses the song
+            +play <song>\t\tplays the song with the given name
+            +playlist <playlist>\t\tplays the playlist with the given name (not working)
+            +queue\t\tshows the queue
+            +remove <index>\t\tremoves a song from the queue
+            +resume\t\tresumes the song
+            +skip\t\tskips to the next song
+            +shuffle\t\tshuffles the queue
+            +song\t\tprints the name of the song playing now
+            +stop\t\tstops singing`
+        );
     }
 });
 
 client.login(settings.token);
+
+/*
+
+
+
+*/
