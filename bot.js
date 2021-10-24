@@ -117,21 +117,7 @@ client.on('messageCreate', async (message) => {
 
     if(command === 'help') {
         message.reply(
-            `+clear\t\tclears the queue
-            +help\t\tshows the commands
-            +join\t\tjoins the channel of the user
-            +loop\t\tloops the current song
-            +loopq\t\tloops the queue
-            +pause\t\tpauses the song
-            +play <song>\t\tplays the song with the given name
-            +playlist <playlist>\t\tplays the playlist with the given name (not working)
-            +queue\t\tshows the queue
-            +remove <index>\t\tremoves a song from the queue
-            +resume\t\tresumes the song
-            +skip\t\tskips to the next song
-            +shuffle\t\tshuffles the queue
-            +song\t\tprints the name of the song playing now
-            +stop\t\tstops singing`
+            `+clear\t\tclears the queue\n+help\t\tshows the commands\n+join\t\tjoins the channel of the user\n+loop\t\tloops the current song\n+loopq\t\tloops the queue\n+pause\t\tpauses the song\n+play <song>\t\tplays the song with the given name\n+playlist <playlist>\t\tplays the playlist with the given name (not working)\n+queue\t\tshows the queue\n+remove <index>\t\tremoves a song from the queue\n+resume\t\tresumes the song\n+skip\t\tskips to the next song\n+shuffle\t\tshuffles the queue\n+song\t\tprints the name of the song playing now\n+stop\t\tstops singing\n`
         );
     }
 });
