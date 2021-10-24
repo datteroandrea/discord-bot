@@ -117,7 +117,7 @@ client.on('messageCreate', async (message) => {
 
     if(command === 'help') {
         message.reply(
-            `+clear\t\t\t\tclears the queue\n+help\t\t\t\tshows the commands\n+join\t\t\t\tjoins the channel of the user\n+loop\t\t\t\tloops the current song\n+loopq\t\t\t\tloops the queue\n+pause\t\t\t\tpauses the song\n+play <song>\t\t\t\tplays the song with the given name\n+playlist <playlist>\t\t\t\tplays the playlist with the given name (not working)\n+queue\t\t\t\tshows the queue\n+remove <index>\t\t\t\tremoves a song from the queue\n+resume\t\t\t\tresumes the song\n+skip\t\t\t\tskips to the next song\n+shuffle\t\t\t\tshuffles the queue\n+song\t\t\t\tprints the name of the song playing now\n+stop\t\t\t\tstops singing\n`
+            `+clear\t\t\t\t\t\t\t\tclears the queue\n+help\t\t\t\t\t\t\t\tshows the commands\n+join\t\t\t\t\t\t\t\tjoins the channel of the user\n+loop\t\t\t\t\t\t\t\tloops the current song\n+loopq\t\t\t\t\t\t\t\tloops the queue\n+pause\t\t\t\t\t\t\t\tpauses the song\n+play <song>\t\t\t\t\t\t\t\tplays the song with the given name\n+playlist <playlist>\t\t\t\t\t\t\t\tplays the playlist with the given name (not working)\n+queue\t\t\t\t\t\t\t\tshows the queue\n+remove <index>\t\t\t\t\t\t\t\tremoves a song from the queue\n+resume\t\t\t\t\t\t\t\tresumes the song\n+skip\t\t\t\t\t\t\t\tskips to the next song\n+shuffle\t\t\t\t\t\t\t\tshuffles the queue\n+song\t\t\t\t\t\t\t\tprints the name of the song playing now\n+stop\t\t\t\t\t\t\t\tstops singing\n`
         );
     }
 });
