@@ -110,8 +110,8 @@ client.on('messageCreate', async (message) => {
     }
 
     if(command === 'join') {
-        message.member.voice.channel.join();
-        
+        let queue = client.player.createQueue(message.guild.id);
+        await queue.join(message.member.voice.channel);
     }
 });
 
